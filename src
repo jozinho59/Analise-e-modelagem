@@ -1,0 +1,36 @@
+# Instalar o pacote wordcloud
+!pip install wordcloud
+
+# Importar bibliotecas
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from wordcloud import WordCloud
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.decomposition import LatentDirichletAllocation
+
+# Carregar os dados (exemplo de dados fictícios)
+data = pd.DataFrame({
+    'Text': [
+        'Este é um exemplo de texto para a geração de nuvem de palavras',
+        'Nuvem de palavras é uma técnica de visualização de texto',
+        'Python é uma linguagem de programação popular',
+        'A análise de texto é uma tarefa interessante',
+        'Nuvem de palavras é útil para identificar palavras-chave'
+    ]
+})
+
+# Função para gerar nuvem de palavras
+def generate_wordcloud(text):
+    wordcloud = WordCloud(width=800, height=400, background_color='white').generate(text)
+    plt.figure(figsize=(10, 5))
+    plt.imshow(wordcloud, interpolation='bilinear')
+    plt.axis('off')
+    plt.show()
+
+# Concatenar todos os textos em uma única string
+all_text = ' '.join(data['Text'])
+
+# Gerar e exibir a nuvem de palavras
+generate_wordcloud(all_text)
